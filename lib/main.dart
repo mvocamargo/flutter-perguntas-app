@@ -64,7 +64,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
                   ...widgets,
                 ],
               )
-            : null,
+            : Center(
+                child: Text('Congrats!', style: TextStyle(fontSize: 30)),
+              ),
       ),
     );
   }
