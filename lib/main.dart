@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_perguntas/components/questao-chamada.dart';
 import 'package:projeto_perguntas/components/questao.dart';
+import 'package:projeto_perguntas/components/questionario.dart';
+import 'package:projeto_perguntas/components/resultado.dart';
 
 import 'components/questao-resposta.dart';
 
@@ -44,30 +47,36 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = temPerguntaSelecionada
-        ? _perguntas[_perguntaSelecionada].cast()['respostas']
-        : [];
-    List<Widget> widgets =
-        respostas.map((t) => QuestaoResposta(t, _responder)).toList();
+    // return MaterialApp(
+    //   home: Scaffold(
+    //       appBar: AppBar(
+    //         title: Text('Perguntas'),
+    //       ),
+    //       body: temPerguntaSelecionada
+    //           ? Column(
+    //               children: [
+    //                 QuestaoChamada(
+    //                   texto:
+    //                       _perguntas[_perguntaSelecionada]['texto'].toString(),
+    //                 ),
+    //                 ...widgets,
+    //               ],
+    //             )
+    //           : Resutado()),
+    // );
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Perguntas'),
-        ),
-        body: temPerguntaSelecionada
-            ? Column(
-                children: [
-                  Questao(
-                    texto: _perguntas[_perguntaSelecionada]['texto'].toString(),
-                  ),
-                  ...widgets,
-                ],
-              )
-            : Center(
-                child: Text('Congrats!', style: TextStyle(fontSize: 30)),
-              ),
-      ),
+          appBar: AppBar(
+            title: Text('Perguntas'),
+          ),
+          body: temPerguntaSelecionada
+              ? Questionario(
+                  perguntas: _perguntas,
+                  perguntaSelecionada: _perguntaSelecionada,
+                  quandoClicado: _responder,
+                )
+              : Resutado()),
     );
   }
 }

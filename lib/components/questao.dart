@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 
-class Questao extends StatelessWidget {
-  final String texto;
+import 'questao-chamada.dart';
+import 'questao-resposta.dart';
 
-  const Questao({Key? key, required this.texto}) : super(key: key);
+class Questao extends StatelessWidget {
+  const Questao({
+    Key? key,
+    required this.questao,
+    required this.quandoClicado,
+  }) : super(key: key);
+
+  final Map questao;
+  final void Function() quandoClicado;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      margin: EdgeInsets.all(10),
-      child: Text(
-        texto,
-        style: TextStyle(
-          fontSize: 28,
+    List<String> respostas = questao['respostas'];
+    List<Widget> widgets =
+        respostas.map((t) => QuestaoResposta(t, this.quandoClicado)).toList();
+    return ListBody(
+      children: [
+        QuestaoChamada(
+          texto: this.questao['texto'].toString(),
         ),
-        textAlign: TextAlign.center,
-      ),
+        ...widgets,
+      ],
     );
   }
 }
