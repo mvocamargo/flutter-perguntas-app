@@ -56,7 +56,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
       _perguntaSelecionada++;
       _pontuacaoTotal += pontuacao;
     });
-    print(_pontuacaoTotal);
+  }
+
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -85,16 +91,17 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Perguntas'),
-          ),
-          body: temPerguntaSelecionada
-              ? Questionario(
-                  perguntas: _perguntas,
-                  perguntaSelecionada: _perguntaSelecionada,
-                  quandoClicado: _responder,
-                )
-              : Resutado()),
+        appBar: AppBar(
+          title: Text('Perguntas'),
+        ),
+        body: temPerguntaSelecionada
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                quandoClicado: _responder,
+              )
+            : Resutado(_pontuacaoTotal, _reiniciarQuestionario),
+      ),
     );
   }
 }
