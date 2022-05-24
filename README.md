@@ -1,6 +1,6 @@
 # Projeto Perguntas
 
-A Flutter project to study the basic about the framework.
+A Flutter project to study the basics about the framework.
 
 ## Features
 
