@@ -11,13 +11,15 @@ class Questao extends StatelessWidget {
   }) : super(key: key);
 
   final Map questao;
-  final void Function() quandoClicado;
+  final void Function(int) quandoClicado;
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = questao['respostas'];
-    List<Widget> widgets =
-        respostas.map((t) => QuestaoResposta(t, this.quandoClicado)).toList();
+    List<Map<String, Object>> respostas = questao['respostas'];
+    List<Widget> widgets = respostas
+        .map((resp) => QuestaoResposta(resp['texto'].toString(),
+            () => quandoClicado(int.parse(resp['pontuacao'].toString()))))
+        .toList();
     return ListBody(
       children: [
         QuestaoChamada(

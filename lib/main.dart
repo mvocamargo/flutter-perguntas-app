@@ -20,25 +20,43 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
   final _perguntas = const [
     {
       'texto': 'Qual a sua cor favorita?',
-      'respostas': ['Azul', 'Amarelo', 'Preto', 'Verde'],
+      'respostas': [
+        {'texto': 'Azul', 'pontuacao': 10},
+        {'texto': 'Amarelo', 'pontuacao': 2},
+        {'texto': 'Preto', 'pontuacao': 7},
+        {'texto': 'Verde', 'pontuacao': 5},
+      ],
     },
     {
       'texto': 'Qual o seu animal favorito?',
-      'respostas': ['Coelho', 'Carneiro', 'Vaca', 'Burro'],
+      'respostas': [
+        {'texto': 'Coelho', 'pontuacao': 9},
+        {'texto': 'Carneiro', 'pontuacao': 6},
+        {'texto': 'Vaca', 'pontuacao': 4},
+        {'texto': 'Burro', 'pontuacao': 3},
+      ],
     },
     {
       'texto': 'Qual o seu cantor favorito?',
-      'respostas': ['Pedro', 'Paulo', 'Timóteo', 'Bruno'],
+      'respostas': [
+        {'texto': 'Pedro', 'pontuacao': 10},
+        {'texto': 'Paulo', 'pontuacao': 9},
+        {'texto': 'Timóteo', 'pontuacao': 8},
+        {'texto': 'Bruno', 'pontuacao': 7},
+      ],
     }
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     setState(() {
       _perguntaSelecionada++;
+      _pontuacaoTotal += pontuacao;
     });
+    print(_pontuacaoTotal);
   }
 
   bool get temPerguntaSelecionada {

@@ -12,7 +12,7 @@ class Questionario extends StatelessWidget {
 
   final List<Map<String, Object>> perguntas;
   final int perguntaSelecionada;
-  final void Function() quandoClicado;
+  final void Function(int) quandoClicado;
 
   @override
   Widget build(BuildContext context) {
